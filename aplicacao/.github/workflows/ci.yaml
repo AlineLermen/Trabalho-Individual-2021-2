@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build app
+      - working-directory: ./aplicacao
+      - run: docker-compose up -d
+
+      - name: Clean database for tests
+      - working-directory: ./aplicacao
+      - run: docker-compose run app rails db:reset
+      - name: Run tests
+      - working-directory: ./aplicacao
+      - run: docker-compose run app rspec
+
+  # lint:
