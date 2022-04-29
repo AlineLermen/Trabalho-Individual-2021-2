@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build_and_test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,6 +14,11 @@ jobs:
       - name: Build app
         working-directory: ./aplicacao
         run: docker-compose up -d
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
       - name: Clean database for tests
         working-directory: ./aplicacao
