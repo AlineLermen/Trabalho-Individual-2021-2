@@ -37,4 +37,4 @@ jobs:
         run: docker-compose run app gem install rubocop
       - name: Run lint
         working-directory: ./aplicacao
-        run: docker-compose exec app rubocop --fail-level F
+        run: docker exec app rubocop --fail-level F
